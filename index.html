@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            background-color: rgb(226, 208, 248);
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            width: 300px;
+            height: 21px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            background-color: #38a169; /* Green color */
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2f855a; /* Darker green on hover */
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="playerNameInput" placeholder="Enter Player Name">
+        <button onclick="NewPlayer()">New Player</button>
+        <button onclick="ExistingPlayer()">Last Player</button>
+    </div>
+
+    <script>
+
+        function NewPlayer() {
+            // 1. Get value from the input field
+            const playerName = document.getElementById('playerNameInput').value.trim();
+
+            if (playerName === '') {
+                alert('Please enter a player name.');
+                return;
+            }
+
+            // 2. ***FIXED: Use localStorage.setItem()***
+            localStorage.setItem('playerName', playerName);
+
+            alert(`New player "${playerName}" created!`);
+            
+            // 3. Redirect
+            window.location.href = "flappyplane.html";
+        }
+
+        function ExistingPlayer() {
+            const inputName = document.getElementById('playerNameInput').value.trim();
+            
+            // 1. Get the last stored player name
+            const storedName = localStorage.getItem('playerName');
+
+            if (storedName === null) {
+                alert('No existing player found. Please create a new player first.');
+                return;
+            }
+
+            // 2. Check if the entered name matches the stored name
+            if (inputName === storedName) {
+                alert(`Welcome back, "${inputName}"!`);
+                
+                // 3. Optional: Re-save the name (though it should already be the same)
+                localStorage.setItem('playerName', inputName); 
+                
+                // 4. Redirect
+                window.location.href = "flappyplane.html";
+            } else {
+                alert(`Player name "${inputName}" does not match the existing player.`);
+            }
+        }
+    </script>
+</body>
+</html>
