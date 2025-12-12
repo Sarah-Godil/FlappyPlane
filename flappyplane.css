@@ -1,0 +1,73 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: rgb(226, 208, 248); /* Light gray background for the page */
+    font-family: sans-serif;
+    user-select: none; /* Prevent selection on the canvas */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+}
+
+#player-info {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+}
+
+#player-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#player-info span a {
+    text-decoration: none; /* Removes the underline */
+}
+
+#player-info span a :link,
+#player-info span a :visited {
+    color: rgb(0, 0, 0); /* Sets the link color to black, regardless of history */
+}
+
+/* Optional: Add a hover effect for user feedback */
+#player-info span a:hover {
+    color: #525252; /* Changes color to grey when hovering */
+}
+
+#game-container {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden; /* Ensures canvas elements don't draw outside */
+    margin-bottom: 20px;
+}
+
+#gameCanvas {
+    display: block; /* Removes any default canvas margin/padding */
+    background-color: #70c5ce; /* Sky blue background */
+    touch-action: manipulation; /* Prevents default browser actions like scrolling/zooming on canvas touch */
+}
+
+#restartButton {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    background-color: #38a169; /* Green color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+#restartButton:hover {
+    background-color: #2f855a;
+}
